@@ -14,16 +14,17 @@ app.use((req, res, next) => {
   fs.appendFile('server.log', log + '\n');
   next();
 });
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
 	res.render('maintainence.hbs')
-})
+})*/
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
 hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
-})
+});
+
 app.get('/', (req, res) => {
   res.render('home.hbs', {
     pageTitle: 'home page',
@@ -34,6 +35,12 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
     pageTitle: 'About page'
+  });
+});
+
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'projects page'
   });
 });
 app.get('/bad', (req, res) => {
